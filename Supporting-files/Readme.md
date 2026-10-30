@@ -14,9 +14,14 @@ PORT=< Port-Number >  # Custom
 ## Content Security Policy
 Only allow content from the site's own origin.
 ```
-HTTP_CSP="default-src 'self'"                                                     # Only load resources from the same origin.
-HTTP_CSP="default-src 'self'; style-src 'self' 'unsafe-inline'"                   # Only load resources from the same origin. Allow inline CSS.
-Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'    # Only load resources from the same origin. Allow inline JavaScript and event handlers.
+# Only load resources from the same origin.
+HTTP_CSP="default-src 'self'"
+
+# Only load resources from the same origin. Allow inline CSS.
+HTTP_CSP="default-src 'self'; style-src 'self' 'unsafe-inline'"
+
+# Only load resources from the same origin. Allow inline JavaScript and event handlers.
+Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'
 ```
 ## Permissions Policy
 Disable access to browser features not typically needed by a static site.
