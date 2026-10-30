@@ -18,10 +18,10 @@ Only allow content from the site's own origin.
 HTTP_CSP="default-src 'self'"
 
 # Only load resources from the same origin. Allow inline CSS.
-HTTP_CSP="default-src 'self'; style-src 'self' 'unsafe-inline'"
+HTTP_CSP="default-src 'self'; style-src 'self' 'unsafe-inline'" # Only use if required
 
 # Only load resources from the same origin. Allow inline JavaScript and event handlers.
-Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'
+HTTP_CSP="default-src 'self'; script-src 'self' 'unsafe-inline'" # Only use if required
 ```
 ## Permissions Policy
 Disable access to browser features not typically needed by a static site.
