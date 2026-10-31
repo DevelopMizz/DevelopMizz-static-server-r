@@ -30,3 +30,10 @@ Disable access to browser features not typically needed by a static site.
 ```
 HTTP_PERMISSIONS_POLICY="camera=(), microphone=(), geolocation=()"
 ```
+
+# Cross Origin Policy
+```
+HTTP_CROSS_ORIGIN_RESOURCE_POLICY="same-origin"
+HTTP_CROSS_ORIGIN_RESOURCE_POLICY="same-site"
+HTTP_CROSS_ORIGIN_RESOURCE_POLICY="cross-origin"
+```
