@@ -30,6 +30,7 @@ use tower_http::services::ServeDir;
 struct SecurityHeaders {
     csp: Option<HeaderValue>,
     permissions_policy: Option<HeaderValue>,
+    cross_origin_resource_policy: Option<HeaderValue>,
 }
 
 async fn security_headers_middleware(
@@ -63,6 +64,15 @@ async fn security_headers_middleware(
         if let Some(policy) = security_headers.permissions_policy {
             response.headers_mut().insert(
                 HeaderName::from_static("permissions-policy"),
+                policy,
+            );
+        }
+
+        if let Some(policy) =
+            security_headers.cross_origin_resource_policy
+        {
+            response.headers_mut().insert(
+                HeaderName::from_static("cross-origin-resource-policy"),
                 policy,
             );
         }
@@ -107,11 +117,18 @@ async fn main() -> Result<(), Box<dyn Error>> {
             .ok()
             .map(|value| HeaderValue::from_str(&value))
             .transpose()?,
-        
+
         permissions_policy: env::var("HTTP_PERMISSIONS_POLICY")
             .ok()
             .map(|value| HeaderValue::from_str(&value))
             .transpose()?,
+
+        cross_origin_resource_policy: env::var(
+            "HTTP_CROSS_ORIGIN_RESOURCE_POLICY",
+        )
+        .ok()
+        .map(|value| HeaderValue::from_str(&value))
+        .transpose()?,
     };
 
     let bind_address = format!("{host}:{port}");
